@@ -7,7 +7,7 @@ const PuppyImage = () => {
   const fetchPuppyImage = async () => {
     setLoading(true)
     try {
-      const response = await fetch('/api/puppy')
+      const response = await fetch('http://localhost:5000/api/puppy')
       const data = await response.json()
       setPuppyImageUrl(data.imageUrl)
     } catch (error) {

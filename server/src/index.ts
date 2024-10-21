@@ -1,12 +1,13 @@
 import express, { Request, Response } from 'express';
 import { createClient } from '@supabase/supabase-js';
-import dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
 
 const supabase = createClient(
     process.env.PROJECT_URL as string,
@@ -15,9 +16,7 @@ const supabase = createClient(
 
 const BUCKET_NAME = process.env.BUCKET_NAME as string;
 
-app.use(cors({
-  origin: ['http://localhost:3000', 'http://192.168.1.14:3000']
-}));
+app.use(cors());
 app.use(express.json());
 
 const fetchRandomImage = async (req: Request, res: Response): Promise<void> => {
