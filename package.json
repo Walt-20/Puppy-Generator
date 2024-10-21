@@ -1,0 +1,31 @@
+{
+  "name": "puppy-generator",
+  "version": "1.0.0",
+  "description": "This webpage will display pictures of puppies at random.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Walt-20/Puppy-Generator.git"
+  },
+  "keywords": [
+    "devops",
+    "node",
+    "supabase",
+    "puppies",
+    "kubernetes",
+    "docker",
+    "ci/cd"
+  ],
+  "author": "Walter Wawra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Walt-20/Puppy-Generator/issues"
+  },
+  "homepage": "https://github.com/Walt-20/Puppy-Generator#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.6"
+  }
+}
