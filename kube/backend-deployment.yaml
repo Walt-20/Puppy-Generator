@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: puppy-generator-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: puppy-generator-server
+  template:
+    metadata:
+      labels:
+        app: puppy-generator-server
+    spec:
+      containers:
+      - name: puppy-generator-server
+        image: wrwawra/puppy-generator:puppy-generator-server
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PROJECT_URL
+            value: https://yqfhqrfjrwwkqeumibpq.supabase.co
+          - name: API_KEY
+            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxZmhxcmZqcnd3a3FldW1pYnBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk1MTQ0NzMsImV4cCI6MjA0NTA5MDQ3M30.7bSiCEJu_WsjZatvPMSCQCrpaHpElJ_YFDhnzxiKYpQ
+          - name: BUCKET_NAME
+            value: puppies
+      imagePullSecrets:
+        - name: regcred
+      
