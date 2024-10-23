@@ -1,17 +1,11 @@
 pipeline {
-    agent any
-
+    agent {
+        docker { image 'node:20.18.0-alpine3.20' }
+    }
     stages {
-        stage('Check Docker version') {
+        stage('Test') {
             steps {
-                echo 'checking docker version'
-                sh 'docker --version'
-            }
-        }
-
-        stage('Build Client docker image') {
-            steps {
-                sh 'make build-client-image'
+                sh 'node --version'
             }
         }
     }
