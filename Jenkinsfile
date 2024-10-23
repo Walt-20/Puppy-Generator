@@ -1,5 +1,6 @@
 node {
     def client
+    def server
 
     stage('Clone repository') {
         checkout scm
@@ -10,6 +11,12 @@ node {
     }
 
     stage('Build Server image') {
-        client = docker.build("puppy-generator-server", "./server")
+        server = docker.build("puppy-generator-server", "./server")
+    }
+
+    stage('Push Client image') {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+            client.push("latest")
+        }
     }
 }
