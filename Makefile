@@ -13,14 +13,21 @@ up:
 rebuild:
 	$(MAKE) down && $(MAKE) build && $(MAKE) up
 
-build-private-repo:
+build-client-image:
 	@echo building frontend dockerfile
-	cd client \
-	docker build -t wrwawra/puppy-generator-client:latest .
+	cd client && docker build -t puppy-generator-client .
 
-push-private-repo:
+push-client-image:
 	@echo push latest to repo
-	docker push wrwawra/puppy-generator-client:latest
+	docker push wrwawra/puppy-generator:puppy-generator-client
+
+build-server-image:
+	@echo building frontend dockerfile
+	cd server && docker build -t puppy-generator-server .
+
+push-server-image:
+	@echo push latest to repo
+	docker push wrwawra/puppy-generator:puppy-generator-server
 
 restart_kube_frontend:
 	@echo restart frontend pods

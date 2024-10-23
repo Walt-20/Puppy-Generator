@@ -11,7 +11,7 @@ pipeline {
 
         stage('Build Client docker image') {
             steps {
-                sh 'cd ./clent && docker build -t puppy-generator-client:v1 .'
+                sh 'make build-client-image'
             }
         }
     }
