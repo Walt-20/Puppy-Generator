@@ -1,12 +1,11 @@
-pipeline {
-    agent {
-        docker { image 'node:20.18.0-alpine3.20' }
+node {
+    def client
+
+    stage('Clone repository') {
+        checkout scm
     }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'node --version'
-            }
-        }
+
+    stage('Build image') {
+        client = docker.build("puppy-generator-client", "./client")
     }
 }
