@@ -15,7 +15,7 @@ node {
     }
 
     stage('Push Client image') {
-        docker.withRegistry('https://hub.docker.com/repository/docker/wrwawra/puppy-generator/general', 'docker-hub-credentials') {
+        docker.withRegistry('https://hub.docker.com/repository/docker/wrwawra/puppy-generator', 'docker-hub-credentials') {
             client.push("latest")
         }
     }
