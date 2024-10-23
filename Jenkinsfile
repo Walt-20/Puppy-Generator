@@ -6,17 +6,12 @@ node {
         checkout scm
     }
 
-    stage('Build Client image') {
-        client = docker.build("puppy-generator-client", "./client")
+    stage('Build and Push Client image') {
+        client = docker.build("puppy-generator-client", 'docker-hub-credentials', "./client")
+        client.push('wrwawra/puppy-generator:puppy-generator-client')
     }
 
-    stage('Build Server image') {
-        server = docker.build("puppy-generator-server", "./server")
-    }
-
-    stage('Push Client image') {
-        docker.withRegistry('https://hub.docker.com/repository/docker/wrwawra/puppy-generator', 'docker-hub-credentials') {
-            client.push("latest")
-        }
-    }
+    // stage('Build Server image') {
+    //     server = docker.build("puppy-generator-server", "./server")
+    // }
 }
