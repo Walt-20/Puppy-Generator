@@ -8,5 +8,11 @@ pipeline {
                 sh 'docker --version'
             }
         }
+
+        stage('Build Client docker image') {
+            steps {
+                sh 'docker build -t puppy-generator-client:v1 .'
+            }
+        }
     }
 }
