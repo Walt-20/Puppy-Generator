@@ -28,3 +28,15 @@ restart_kube_frontend:
 
 restart_frontend_pod:
 	$(MAKE) build-private-repo && $(MAKE) push-private-repo && $(MAKE) restart_kube_frontend
+
+git_add:
+	git add .
+
+git_commit:
+	git commit -m "make file adding to repo"
+
+git_push:
+	git push
+
+push_to_git:
+	$(MAKE) git_add && $(MAKE) git_commit && $(MAKE) git_push
