@@ -14,7 +14,21 @@ node {
         }
     }
 
-    // stage('Build Server image') {
-    //     server = docker.build("puppy-generator-server", "./server")
-    // }
+    stage('Test Client image') {
+        steps {
+            dir('./client') {
+                sh 'npm install'
+                sh 'npm test -- --reporters=default --reporters="jest-junit"'
+            }
+        }
+    }
+
+    stage('Build and Push Server image') {
+        server = docker.build("wrwawra/puppy-generator:puppy-generator-server", "./server")
+
+        docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+            server.push("puppy-generator-server")
+        }
+    }
+
 }
