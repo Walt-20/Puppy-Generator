@@ -1,17 +1,14 @@
 pipeline {
     agent any
+
     stages {
         stage('Install Dependencies') {
             steps {
-                nodejs(nodeJSInstallationName: 'recent node') {
-                    sh 'npm --version'
-                    sh 'npm install'
-                }
+                sh 'npm --version'
+                sh 'npm install'
             }
         }
-    }
 
-    stages {
         stage('Clone repository') {
             steps {
                 checkout scm
