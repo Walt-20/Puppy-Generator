@@ -1,5 +1,15 @@
 pipeline {
     agent any
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                nodejs(nodeJSInstallationName: 'recent node') {
+                    sh 'npm --version'
+                    sh 'npm install'
+                }
+            }
+        }
+    }
 
     stages {
         stage('Clone repository') {
@@ -22,7 +32,6 @@ pipeline {
         stage('Test Client image') {
             steps {
                 dir('./client') {
-                    sh 'npm install' // Install dependencies
                     sh 'npm test -- --reporters=default --reporters="jest-junit"' // Run tests with Jest
                 }
             }
