@@ -11,10 +11,10 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - PROJECT_URL=https://yqfhqrfjrwwkqeumibpq.supabase.co
-      - API_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxZmhxcmZqcnd3a3FldW1pYnBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk1MTQ0NzMsImV4cCI6MjA0NTA5MDQ3M30.7bSiCEJu_WsjZatvPMSCQCrpaHpElJ_YFDhnzxiKYpQ
-      - PORT=5000
-      - BUCKET_NAME=puppies
+      - PROJECT_URL
+      - API_KEY
+      - PORT
+      - BUCKET_NAME
     networks:
       - puppy-network
     depends_on:
