@@ -15,13 +15,13 @@ pipeline {
             }
         }
 
-        // stage('Build and Push Client image') {
-        //     steps {
-        //         script {
-        //             client = docker.build("wrwawra/puppy-generator:puppy-generator-client", "./client")
-        //         }
-        //     }
-        // }
+        stage('Build and Push Client image') {
+            steps {
+                script {
+                    client = docker.build("wrwawra/puppy-generator:puppy-generator-client", "./client")
+                }
+            }
+        }
 
         // stage('Test Client image') {
         //     steps {

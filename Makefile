@@ -1,3 +1,5 @@
+COMMIT_MSG ?= "Update commit"
+
 down:
 	@echo "docker compose down..."
 	docker compose down --remove-orphans
@@ -40,7 +42,7 @@ git_add:
 	git add .
 
 git_commit:
-	git commit -m "make file adding to repo"
+	git commit -m $(COMMIT_MSG)
 
 git_push:
 	git push
