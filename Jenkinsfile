@@ -2,16 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage('Install Dependencies') {
+        stage('Checkout') {
             steps {
-                sh 'npm --version'
-                sh 'npm install'
-            }
-        }
-
-        stage('Clone repository') {
-            steps {
-                checkout scm
+                git url: 'https://github.com/Walt-20/Puppy-Generator.git', branch: 'dev'
             }
         }
 

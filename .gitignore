@@ -131,6 +131,9 @@ dist
 
 # .env
 ./server/.env
+.env
 
 # secrets.yaml
 ./kube/secrets.yaml
+
+
