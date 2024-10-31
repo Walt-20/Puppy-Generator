@@ -12,9 +12,6 @@ pipeline {
             steps {
                 script {
                     client = docker.build("wrwawra/puppy-generator:puppy-generator-client", "./client")
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                        client.push("puppy-generator-client")
-                    }
                 }
             }
         }
