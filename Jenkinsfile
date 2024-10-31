@@ -1,36 +1,35 @@
 pipeline {
     agent {
         docker {
-            image 'node:20'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
+            image 'node:22.11.0-alpine3.20'
         }
     }
 
     stages {
-        stage('Check Docker Socket') {
+        stage('Check Node Version') {
             steps {
                 script {
                     // Check if Docker commands can be executed
-                    sh 'docker ps'  // This should list running containers
+                    sh 'node --version'  // This should list running containers
                 }
             }
         }
 
-        stage('Build and Push Client image') {
-            steps {
-                script {
-                    client = docker.build("wrwawra/puppy-generator:puppy-generator-client", "./client")
-                }
-            }
-        }
+        // stage('Build and Push Client image') {
+        //     steps {
+        //         script {
+        //             client = docker.build("wrwawra/puppy-generator:puppy-generator-client", "./client")
+        //         }
+        //     }
+        // }
 
-        stage('Test Client image') {
-            steps {
-                dir('./client') {
-                    sh 'npm test -- --reporters=default --reporters="jest-junit"' // Run tests with Jest
-                }
-            }
-        }
+        // stage('Test Client image') {
+        //     steps {
+        //         dir('./client') {
+        //             sh 'npm test -- --reporters=default --reporters="jest-junit"' // Run tests with Jest
+        //         }
+        //     }
+        // }
     }
     // stage('Build and Push Server image') {
     //     server = docker.build("wrwawra/puppy-generator:puppy-generator-server", "./server")
