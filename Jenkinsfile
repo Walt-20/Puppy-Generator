@@ -1,13 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:20'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git url: 'https://github.com/Walt-20/Puppy-Generator.git', branch: 'dev'
-            }
-        }
-
         stage('Build and Push Client image') {
             steps {
                 script {
