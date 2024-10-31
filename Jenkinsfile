@@ -1,12 +1,21 @@
 pipeline {
     agent {
         docker {
-            image 'node:18'
+            image 'node:20'
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
 
     stages {
+        stage('Check Docker Socket') {
+            steps {
+                script {
+                    // Check if Docker commands can be executed
+                    sh 'docker ps'  // This should list running containers
+                }
+            }
+        }
+
         stage('Build and Push Client image') {
             steps {
                 script {
