@@ -1,22 +1,12 @@
-# Use the official Jenkins LTS image
-FROM jenkins/jenkins:lts
-
-# Switch to root to install Node.js
+FROM jenkins/jenkins:2.479.1-jdk17
 USER root
-
-# Install Node.js (version 20)
-RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
-    apt-get install -y nodejs
-
-# Install any other dependencies, if needed
-# For example, you might need to install Git
-RUN apt-get update && apt-get install -y git
-
-# Switch back to Jenkins user
+RUN apt-get update && apt-get install -y lsb-release
+RUN curl -fsSLo /usr/share/keyrings/docker-archive-keyring.asc \
+  https://download.docker.com/linux/debian/gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) \
+  signed-by=/usr/share/keyrings/docker-archive-keyring.asc] \
+  https://download.docker.com/linux/debian \
+  $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+RUN apt-get update && apt-get install -y docker-ce-cli
 USER jenkins
-
-# Set the working directory
-WORKDIR /var/jenkins_home
-
-# Expose Jenkins port
-EXPOSE 8080
+RUN jenkins-plugin-cli --plugins "blueocean docker-workflow"
