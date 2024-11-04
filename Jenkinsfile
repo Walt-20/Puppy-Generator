@@ -1,8 +1,8 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:22.11.0-alpine3.20'
-        }
+    agent any
+
+    environment {
+        DOCKER_CREDENTIALS = 'DOCKER_CREDS'
     }
 
     stages {
@@ -15,10 +15,18 @@ pipeline {
             }
         }
 
-        stage('Build and Push Client image') {
+        stage('Build Docker Image') {
             steps {
                 script {
                     client = docker.build("wrwawra/puppy-generator:puppy-generator-client", "./client")
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS)
                 }
             }
         }
