@@ -14,6 +14,7 @@ pipeline {
         stage('Test Client image') {
             steps {
                 dir('./client') {
+                    sh 'npm install'
                     sh 'npm test -- --reporters=default --reporters="jest-junit"' // Run tests with Jest
                 }
             }
