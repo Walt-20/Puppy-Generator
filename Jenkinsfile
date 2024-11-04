@@ -20,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build Client Docker Image') {
             steps {
                 script {
                     client = docker.build("wrwawra/puppy-generator:puppy-generator-client", "./client")
@@ -28,7 +28,7 @@ pipeline {
             }
         }
 
-        stage('Push Docker Image') {
+        stage('Push Client Docker Image') {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'DOCKER_CREDS') {
@@ -38,13 +38,23 @@ pipeline {
             }
         }
 
+        stage('Build Server Docker Image') {
+            steps {
+                script {
+                    server = docker.build("wrwawra/puppy-generator:puppy-generator-server", "./server")
+                }
+            }
+        }
+
+        stage('Push Server Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'DOCKER_CREDS') {
+                        server.push("latest")
+                    }
+                }
+            }
+        }
+
     }
-    // stage('Build and Push Server image') {
-    //     server = docker.build("wrwawra/puppy-generator:puppy-generator-server", "./server")
-
-    //     docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-    //         server.push("puppy-generator-server")
-    //     }
-    // }
-
 }
