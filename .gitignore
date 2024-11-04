@@ -135,5 +135,6 @@ dist
 
 # kube
 .kube/
+kube/
 
 
