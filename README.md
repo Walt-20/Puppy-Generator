@@ -2,3 +2,5 @@
 
 # Puppy-Generator
 Showcase Devops principles.
+
+![Running Pipeline](images/running-pipeline.png)
