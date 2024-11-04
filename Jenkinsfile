@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'DOCKER_CREDS') {
-                        docker.push("puppy-generator-client")
+                        client.push("latest")
                     }
                 }
             }
