@@ -19,12 +19,21 @@ spec:
         ports:
         - containerPort: 5000
         env:
-          - name: PROJECT_URL
-            value: https://yqfhqrfjrwwkqeumibpq.supabase.co
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: my-secret
+                key: DATABASE_URL
           - name: API_KEY
-            value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlxZmhxcmZqcnd3a3FldW1pYnBxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjk1MTQ0NzMsImV4cCI6MjA0NTA5MDQ3M30.7bSiCEJu_WsjZatvPMSCQCrpaHpElJ_YFDhnzxiKYpQ
+            valueFrom:
+              secretKeyRef:
+                name: my-secret
+                key: API_KEY
           - name: BUCKET_NAME
-            value: puppies
+            valueFrom:
+              secretKeyRef:
+                name: my-secret
+                key: BUCKET_NAME
       imagePullSecrets:
         - name: regcred
       
