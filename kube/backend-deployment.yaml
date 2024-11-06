@@ -19,12 +19,12 @@ spec:
         ports:
         - containerPort: 5000
         env:
-          - name: PROJECT_URL
+          - name: DATABASE_URL
             valueFrom:
               secretKeyRef:
                 name: my-secret
                 key: DATABASE_URL
-          - name: CONNECTION_KEY
+          - name: API_KEY
             valueFrom:
               secretKeyRef:
                 name: my-secret
@@ -33,7 +33,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: my-secret
-                key: puppies
+                key: BUCKET_NAME
       imagePullSecrets:
         - name: regcred
       
