@@ -6,3 +6,7 @@
 Showcase Devops principles.
 
 ![Running Pipeline](images/running-pipeline.png)
+
+![Start of Application](images/Cute-Puppy-App.png)
+
+![Result of Application](images/Cute-Puppy-App2.png)
