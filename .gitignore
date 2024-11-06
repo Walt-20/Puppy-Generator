@@ -135,6 +135,6 @@ dist
 
 # kube
 .kube/
-kube/
+kube/secrets.yaml
 
 
